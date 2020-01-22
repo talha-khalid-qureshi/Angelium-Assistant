@@ -1,6 +1,8 @@
 from chatterbot.logic import LogicAdapter
 import random
 from chatterbot.conversation import Statement
+import sys,logging
+logging.basicConfig(filename='sora_transaction_bot.log',level=logging.INFO)
 
 action = ""
 currency_type = ""
@@ -24,7 +26,7 @@ class DepositWithdraw(LogicAdapter):
         elif check_flag == False:
             for i in check_list:
                     if i in statement and ('how' not in statement) and ('fees' not in statement) and ('not' not in statement):
-                #     logging.info('%s is processabel in depossit/withdraw module',statement)
+                        logging.info('%s is processabel in depossit/withdraw module',statement)
                         return True
         else:
             return False
@@ -119,8 +121,5 @@ class DepositWithdraw(LogicAdapter):
         confidence = 1.0 
         text = Statement(str(response_statement),confidence)
         
-     #   logging.info('results : %s ',response_statement)
+        logging.info('results : %s ',response_statement)
         return  text
-
-
-#another_v13.final_response('please transfer 10 btc to wallet')
